@@ -1,7 +1,7 @@
 from PySide6 import QtGui
 from PySide6 import QtCore
 from PySide6 import QtWidgets
-from PySide6.QtCore import (Qt, Signal)
+from PySide6.QtCore import (Property, Qt, Signal)
 
 from PySide6.QtWidgets import QPushButton
 from PySide6.QtGui import QBrush, QPen
@@ -118,7 +118,7 @@ class Botton(QPushButton):
         self.show()
 
 class componente(QtWidgets.QWidget):
-
+    
     def __init__(self, parent=None):
         super().__init__(parent)
         
@@ -133,6 +133,16 @@ class componente(QtWidgets.QWidget):
         self.setLayout(layout)
         self.color1= QtGui.QColor("blank")
         self.color2= QtGui.QColor("blank")
+    def getColor1(self):
+        return self.color1
+    def getColor2(self):
+        return self.color1
+    def setColor1(self, color1):
+        self.color1 = color1
+    def setColor2(self, color2):
+        self.color2 = color2
+    value1 = Property(int, getColor1, setColor1)
+    value2 = Property(int, getColor2, setColor2)
     def handle_timeout(self):
                 apply_color_animation(
                     self,
@@ -142,10 +152,10 @@ class componente(QtWidgets.QWidget):
                 )
     def show_selected_color(self, c):
         if(format(c)=="#0000FF"):
-            self.color1= QtGui.QColor("#E9EBEF")
-            self.color2= QtGui.QColor("#0000FF")
+            self.setColor1(QtGui.QColor("#E9EBEF"))
+            self.setColor2(QtGui.QColor("#0000FF"))
             self.handle_timeout()
         if(format(c)=="#FF0000"):
-            self.color1= QtGui.QColor("pink")
-            self.color2= QtGui.QColor("#FF0000")
+            self.setColor1(QtGui.QColor("pink"))
+            self.setColor2(QtGui.QColor("#FF0000"))
             self.handle_timeout()
