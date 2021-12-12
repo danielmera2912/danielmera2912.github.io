@@ -133,10 +133,12 @@ class componente(QtWidgets.QWidget):
         self.setLayout(layout)
         self.color1= QtGui.QColor("blank")
         self.color2= QtGui.QColor("blank")
+    def getBottom(self):
+        return self.botton
     def getColor1(self):
         return self.color1
     def getColor2(self):
-        return self.color1
+        return self.color2
     def setColor1(self, color1):
         self.color1 = color1
     def setColor2(self, color2):
