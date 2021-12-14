@@ -131,10 +131,10 @@ class componente(QtWidgets.QWidget):
         layout.addWidget(palette)
         layout.addWidget(self.botton)
         self.setLayout(layout)
-        self.color1= QtGui.QColor("blank")
-        self.color2= QtGui.QColor("blank")
-    def getBottom(self):
-        return self.botton
+        self.color1= (QtGui.QColor("#E9EBEF"))
+        self.color2= (QtGui.QColor("#0000FF"))
+    def getBottomColor(self):
+        return self.botton.property("background-color")
     def getColor1(self):
         return self.color1
     def getColor2(self):

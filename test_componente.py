@@ -18,5 +18,5 @@ def test_color2(app):
     assert app.getColor2() == QtGui.QColor("#0000FF")
 def test_color_after_click(app, qtbot):
     qtbot.mouseClick(app, QtCore.Qt.LeftButton)
-    assert app.getBottom() == QtGui.QColor("#E9EBEF") or QtGui.QColor("#0000FF")
+    assert app.getBottomColor() == "#E9EBEF" or "#0000FF"
     
