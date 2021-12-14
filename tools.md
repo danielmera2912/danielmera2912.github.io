@@ -5,3 +5,4 @@ Paquete QtWidgets
 Paquete Signal, Property, Qt
 Paquete QPushButton
 Paquetes QBrush, QPen
+Paquetes pytest, unittest
