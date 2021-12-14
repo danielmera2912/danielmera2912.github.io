@@ -1,8 +1,2 @@
 Visual Studio Code para la programación del componente.
-Paquete QtGui
-Paquete QtCore
-Paquete QtWidgets
-Paquete Signal, Property, Qt
-Paquete QPushButton
-Paquetes QBrush, QPen
-Paquetes pytest, unittest
+Los paquetes QtGui, QtCore, QtWidgets, Signal, Property, Qt, QPushButton, QBrush, QPen, pytest, unittest.
