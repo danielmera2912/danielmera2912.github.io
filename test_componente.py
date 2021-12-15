@@ -3,6 +3,12 @@ from PySide6 import QtCore, QtGui
 from PySide6.QtCore import QSize
 from PySide6.QtWidgets import QApplication, QWidget
 from componente import componente
+class TestComponente(unittest.TestCase):
+    def test_sizeHint(self):
+        app = QApplication([])
+        result = componente().sizeHint()
+        self.assertEqual(result, QSize(100, 124))
+
 
 @pytest.fixture
 def app(qtbot):
@@ -19,4 +25,5 @@ def test_color2(app):
 def test_color_after_click(app, qtbot):
     qtbot.mouseClick(app, QtCore.Qt.LeftButton)
     assert app.getBottomColor() == "#E9EBEF" or "#0000FF"
-    
+if __name__ == '__main__':
+    unittest.main()

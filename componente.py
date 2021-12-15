@@ -1,7 +1,7 @@
 from PySide6 import QtGui
 from PySide6 import QtCore
 from PySide6 import QtWidgets
-from PySide6.QtCore import (Property, Qt, Signal)
+from PySide6.QtCore import (Property, QSize, Qt, Signal)
 
 from PySide6.QtWidgets import QPushButton
 from PySide6.QtGui import QBrush, QPen
@@ -143,6 +143,8 @@ class componente(QtWidgets.QWidget):
         self.color1 = color1
     def setColor2(self, color2):
         self.color2 = color2
+    def sizeHint(self):
+        return QSize(100, 124)
     value1 = Property(int, getColor1, setColor1)
     value2 = Property(int, getColor2, setColor2)
     def handle_timeout(self):
