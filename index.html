@@ -1,241 +1,606 @@
 <!DOCTYPE html>
-<!--[if lt IE 9 ]><html class="no-js oldie" lang="en"> <![endif]-->
-<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
-
+<html lang="es">
 <head>
-
-    <!--- basic page needs
-    ================================================== -->
     <meta charset="utf-8">
-    <title>Daniel Mera Sachse</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- mobile specific metas
-    ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- script
-    ================================================== -->
-    <script src="js/modernizr.js"></script>
-    <script src="js/pace.min.js"></script>
-
-    <!-- favicons
-    ================================================== -->
+    <title>Daniel Mera Sachse · Analista Programador</title>
+    <meta name="description" content="Portfolio de Daniel Mera Sachse — Analista Programador con +3 años de experiencia en desarrollo fullstack.">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
 
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-grid {
+            position: fixed; inset: 0; z-index: -1;
+            background-image:
+                linear-gradient(rgba(99, 102, 241, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, .04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .bg-glow {
+            position: fixed; z-index: -1;
+            width: 600px; height: 600px; border-radius: 50%;
+            filter: blur(120px); opacity: .15; pointer-events: none;
+        }
+        .bg-glow--1 { top: -200px; left: -100px; background: #6366f1; }
+        .bg-glow--2 { bottom: -200px; right: -100px; background: #06b6d4; }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, .75);
+            border-bottom: 1px solid rgba(99, 102, 241, .1);
+            transition: box-shadow .3s;
+        }
+        nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,.4); }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: .9rem 2rem;
+        }
+        .nav-logo {
+            font-weight: 700; font-size: 1.2rem;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            font-size: .875rem; font-weight: 500; letter-spacing: .02em;
+            color: #a0a0b0; transition: color .25s;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: .5rem; }
+        .nav-toggle span { display: block; width: 22px; height: 2px; background: #e0e0e8; margin: 5px 0; transition: .3s; border-radius: 2px; }
+
+        /* ===== SECTIONS COMMON ===== */
+        section { padding: 6rem 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            display: inline-block; font-size: .75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: .15em;
+            color: #6366f1; margin-bottom: .75rem;
+            background: rgba(99, 102, 241, .1); padding: .35rem .9rem; border-radius: 100px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+            line-height: 1.15; margin-bottom: 1.25rem;
+        }
+        .section-desc {
+            font-size: 1.05rem; color: #9090a0; max-width: 640px; line-height: 1.7;
+        }
+
+        /* ===== HERO ===== */
+        #hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding-top: 80px;
+        }
+        .hero-inner { display: flex; align-items: center; gap: 4rem; flex-wrap: wrap; }
+        .hero-text { flex: 1 1 400px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: .5rem;
+            background: rgba(99, 102, 241, .1); border: 1px solid rgba(99, 102, 241, .2);
+            padding: .4rem 1rem; border-radius: 100px; font-size: .8rem; font-weight: 500;
+            color: #a5b4fc; margin-bottom: 1.5rem;
+        }
+        .hero-badge .dot {
+            width: 8px; height: 8px; background: #22c55e; border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+        .hero-name {
+            font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.08;
+            margin-bottom: .75rem;
+        }
+        .hero-name .gradient {
+            background: linear-gradient(135deg, #6366f1, #06b6d4, #a78bfa);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-role {
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem); color: #9090a0;
+            margin-bottom: 2rem; line-height: 1.6;
+        }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .75rem 1.75rem; border-radius: 12px;
+            font-size: .9rem; font-weight: 600; transition: all .3s; cursor: pointer; border: none;
+        }
+        .btn--primary {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: #fff; box-shadow: 0 4px 20px rgba(99, 102, 241, .3);
+        }
+        .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99, 102, 241, .45); }
+        .btn--outline {
+            background: transparent; color: #e0e0e8;
+            border: 1px solid rgba(255,255,255,.15);
+        }
+        .btn--outline:hover { border-color: rgba(99,102,241,.5); background: rgba(99,102,241,.08); }
+        .hero-visual { flex: 1 1 280px; display: flex; justify-content: center; }
+        .hero-card {
+            width: 280px; padding: 2rem;
+            background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
+            border-radius: 24px; backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .hero-avatar {
+            width: 120px; height: 120px; margin: 0 auto 1.25rem;
+            border-radius: 50%; overflow: hidden;
+            border: 3px solid rgba(99, 102, 241, .4);
+            box-shadow: 0 0 40px rgba(99, 102, 241, .15);
+        }
+        .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .25rem; }
+        .hero-card p { font-size: .85rem; color: #9090a0; }
+        .hero-card .stats-row {
+            display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.25rem;
+            padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.06);
+        }
+        .hero-card .stat-item { text-align: center; }
+        .hero-card .stat-num { font-size: 1.3rem; font-weight: 700; color: #a5b4fc; }
+        .hero-card .stat-label { font-size: .7rem; color: #707080; text-transform: uppercase; letter-spacing: .05em; }
+
+        /* ===== ABOUT ===== */
+        #about .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2.5rem; }
+        .about-card {
+            background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06);
+            border-radius: 20px; padding: 2rem; transition: border-color .3s;
+        }
+        .about-card:hover { border-color: rgba(99, 102, 241, .25); }
+        .about-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem; }
+        .about-card .icon { font-size: 1.3rem; }
+        .timeline { list-style: none; }
+        .timeline li {
+            position: relative; padding-left: 1.25rem; padding-bottom: 1.25rem;
+            border-left: 2px solid rgba(99, 102, 241, .2);
+        }
+        .timeline li:last-child { padding-bottom: 0; }
+        .timeline li::before {
+            content: ''; position: absolute; left: -5px; top: 6px;
+            width: 8px; height: 8px; background: #6366f1; border-radius: 50%;
+        }
+        .timeline .t-title { font-weight: 600; font-size: .95rem; }
+        .timeline .t-company { color: #a5b4fc; font-size: .85rem; }
+        .timeline .t-date { color: #707080; font-size: .8rem; }
+        .cert-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+        .cert-list li {
+            display: flex; align-items: center; gap: .5rem;
+            font-size: .9rem; color: #b0b0c0;
+        }
+        .cert-list .cert-badge {
+            display: inline-block; width: 6px; height: 6px;
+            background: #06b6d4; border-radius: 50%; flex-shrink: 0;
+        }
+
+        /* ===== TECH ===== */
+        #tech { background: rgba(255,255,255,.01); }
+        .tech-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+        .tech-cat {
+            background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06);
+            border-radius: 16px; padding: 1.5rem;
+        }
+        .tech-cat h3 { font-size: .95rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem; }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+        .tag {
+            padding: .35rem .8rem; border-radius: 8px; font-size: .8rem; font-weight: 500;
+            background: rgba(99, 102, 241, .08); color: #a5b4fc;
+            border: 1px solid rgba(99, 102, 241, .15); transition: all .25s;
+        }
+        .tag:hover { background: rgba(99, 102, 241, .18); border-color: rgba(99, 102, 241, .35); }
+        .tag--cyan { background: rgba(6, 182, 212, .08); color: #67e8f9; border-color: rgba(6, 182, 212, .15); }
+        .tag--cyan:hover { background: rgba(6, 182, 212, .18); border-color: rgba(6, 182, 212, .35); }
+        .tag--green { background: rgba(34, 197, 94, .08); color: #86efac; border-color: rgba(34, 197, 94, .15); }
+        .tag--green:hover { background: rgba(34, 197, 94, .18); border-color: rgba(34, 197, 94, .35); }
+        .tag--amber { background: rgba(245, 158, 11, .08); color: #fcd34d; border-color: rgba(245, 158, 11, .15); }
+        .tag--amber:hover { background: rgba(245, 158, 11, .18); border-color: rgba(245, 158, 11, .35); }
+        .tag--pink { background: rgba(236, 72, 153, .08); color: #f9a8d4; border-color: rgba(236, 72, 153, .15); }
+        .tag--pink:hover { background: rgba(236, 72, 153, .18); border-color: rgba(236, 72, 153, .35); }
+
+        /* ===== PROJECTS ===== */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+        .project-card {
+            background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06);
+            border-radius: 20px; padding: 2rem; transition: all .35s;
+            position: relative; overflow: hidden;
+        }
+        .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #6366f1, #06b6d4); opacity: 0; transition: opacity .35s;
+        }
+        .project-card:hover { border-color: rgba(99, 102, 241, .3); transform: translateY(-4px); }
+        .project-card:hover::before { opacity: 1; }
+        .project-card .p-featured {
+            display: inline-block; font-size: .7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: .1em; color: #fbbf24; margin-bottom: .75rem;
+            background: rgba(251, 191, 36, .1); padding: .25rem .6rem; border-radius: 6px;
+        }
+        .project-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; }
+        .project-card .p-desc { font-size: .9rem; color: #9090a0; margin-bottom: 1.25rem; line-height: 1.6; }
+        .project-card .p-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.25rem; }
+        .project-card .p-tag {
+            font-size: .72rem; padding: .2rem .55rem; border-radius: 6px;
+            background: rgba(255,255,255,.05); color: #b0b0c0;
+        }
+        .project-card .p-link {
+            display: inline-flex; align-items: center; gap: .4rem;
+            font-size: .85rem; font-weight: 600; color: #a5b4fc; transition: color .25s;
+        }
+        .project-card .p-link:hover { color: #c7d2fe; }
+
+        /* ===== CONTACT ===== */
+        #contact { text-align: center; }
+        .contact-links { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .contact-chip {
+            display: inline-flex; align-items: center; gap: .6rem;
+            padding: .8rem 1.5rem; border-radius: 14px;
+            background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+            font-size: .9rem; font-weight: 500; transition: all .3s;
+        }
+        .contact-chip:hover { border-color: rgba(99,102,241,.4); background: rgba(99,102,241,.06); transform: translateY(-2px); }
+        .contact-chip svg { width: 20px; height: 20px; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center; padding: 2.5rem 2rem;
+            border-top: 1px solid rgba(255,255,255,.04);
+            font-size: .8rem; color: #505060;
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(10, 10, 15, .95); backdrop-filter: blur(20px);
+                padding: 1.5rem 2rem; gap: 1.25rem;
+                border-bottom: 1px solid rgba(99,102,241,.1);
+            }
+            .nav-toggle { display: block; }
+            .hero-inner { flex-direction: column-reverse; text-align: center; gap: 2rem; }
+            .hero-buttons { justify-content: center; }
+            #about .about-grid { grid-template-columns: 1fr; }
+            .hero-card { width: 240px; }
+            section { padding: 4rem 1.25rem; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
+<body>
+    <!-- Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow--1"></div>
+    <div class="bg-glow bg-glow--2"></div>
 
-<body id="top">
-
-    <!-- header
-    ================================================== -->
-    <header class="s-header">
-        <nav class="header-nav-wrap">
-            <ul class="header-nav">
-                <li class="current"><a class="smoothscroll" href="#home" title="home">Inicio</a></li>
-                <li><a class="smoothscroll" href="#about" title="about">Sobre mi</a></li>
-                <li><a class="smoothscroll" href="#works" title="works">Mis trabajos</a></li>
-                <li><a class="smoothscroll" href="#contact" title="contact">Contacto</a></li>
+    <!-- Nav -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">DMS</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Sobre m&iacute;</a></li>
+                <li><a href="#tech">Tecnolog&iacute;as</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#contact">Contacto</a></li>
             </ul>
-        </nav>
-        <a class="header-menu-toggle" href="#0"><span>Menu</span></a>
-    </header> <!-- end s-header -->
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir men&uacute;">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
-    <!-- home
-    ================================================== -->
-    <section id="home" class="s-home page-hero target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
-        <div class="overlay"></div>
-        <div class="shadow-overlay"></div>
-        <div class="home-content">
-            <div class="row home-content__main">
-                <h3></h3>
-                <h1>
-                    Soy Daniel Mera Sachse. <br>
-                    Soy desarrollador web
-                </h1>
-                <div class="home-content__buttons">
-                    <a href="#works" class="smoothscroll btn btn--stroke">Mis proyectos</a>
-                    <a href="#about" class="smoothscroll btn btn--stroke">Más sobre mi</a>
+    <!-- Hero -->
+    <section id="hero">
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <div class="hero-badge"><span class="dot"></span> Disponible para nuevos retos</div>
+                <h1 class="hero-name">Daniel<br><span class="gradient">Mera Sachse</span></h1>
+                <p class="hero-role">
+                    <strong>Analista Programador</strong> en SOLTEL Group con +3 a&ntilde;os de experiencia.<br>
+                    Especializado en desarrollo fullstack &amp; actualmente form&aacute;ndome en <strong>IA &amp; Big Data</strong>.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn--primary">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+                        Ver proyectos
+                    </a>
+                    <a href="https://www.linkedin.com/in/daniel-mera-sachse-b92267242/" target="_blank" rel="noopener" class="btn btn--outline">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77A1.75 1.75 0 0 0 0 1.73v20.54A1.75 1.75 0 0 0 1.77 24h20.46A1.75 1.75 0 0 0 24 22.27V1.73A1.75 1.75 0 0 0 22.23 0z"/></svg>
+                        LinkedIn
+                    </a>
                 </div>
-                <div class="home-content__scroll">
-                    <a href="#about" class="scroll-link smoothscroll">
-                        <span>Desplaza hacia abajo</span>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-avatar">
+                        <img src="https://avatars.githubusercontent.com/u/92999122" alt="Daniel Mera Sachse">
+                    </div>
+                    <h3>Daniel Mera</h3>
+                    <p>@danielmera2912</p>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-num">+3</div>
+                            <div class="stat-label">A&ntilde;os exp.</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">AP</div>
+                            <div class="stat-label">Rol actual</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="fade-up">
+                <span class="section-label">Trayectoria</span>
+                <h2 class="section-title">Experiencia &amp; Formaci&oacute;n</h2>
+                <p class="section-desc">M&aacute;s de 3 a&ntilde;os desarrollando soluciones empresariales en SOLTEL Group, participando en m&uacute;ltiples proyectos con tecnolog&iacute;as web modernas.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card fade-up">
+                    <h3><span class="icon">&#128188;</span> Experiencia profesional</h3>
+                    <ul class="timeline">
+                        <li>
+                            <div class="t-title">Analista Programador</div>
+                            <div class="t-company">SOLTEL Group &middot; Jornada completa</div>
+                            <div class="t-date">mar. 2025 &ndash; actualidad</div>
+                        </li>
+                        <li>
+                            <div class="t-title">Programador Inform&aacute;tico</div>
+                            <div class="t-company">SOLTEL Group &middot; Jornada completa &middot; Remoto</div>
+                            <div class="t-date">oct. 2023 &ndash; abr. 2025</div>
+                        </li>
+                        <li>
+                            <div class="t-title">Programador</div>
+                            <div class="t-company">SOLTEL Group &middot; Jornada completa &middot; Remoto</div>
+                            <div class="t-date">jun. 2023 &ndash; sept. 2023</div>
+                        </li>
+                        <li>
+                            <div class="t-title">Programador (pr&aacute;cticas)</div>
+                            <div class="t-company">SOLTEL Group</div>
+                            <div class="t-date">mar. 2023 &ndash; may. 2023</div>
+                        </li>
+                        <li>
+                            <div class="t-title">Estudiante en pr&aacute;cticas</div>
+                            <div class="t-company">Libnamic &middot; Odoo</div>
+                            <div class="t-date">mar. 2022 &ndash; jun. 2022</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-card fade-up">
+                    <h3><span class="icon">&#127891;</span> Formaci&oacute;n</h3>
+                    <ul class="timeline">
+                        <li>
+                            <div class="t-title">Especializaci&oacute;n en IA y Big Data</div>
+                            <div class="t-company">IES Rafael Alberti</div>
+                            <div class="t-date">oct. 2025 &ndash; jun. 2026 (en curso)</div>
+                        </li>
+                        <li>
+                            <div class="t-title">CFGS Desarrollo Web / Multimedia</div>
+                            <div class="t-company">IES Rafael Alberti</div>
+                            <div class="t-date">oct. 2022 &ndash; jun. 2023</div>
+                        </li>
+                        <li>
+                            <div class="t-title">CFGS Desarrollo de Aplicaciones Multiplataforma</div>
+                            <div class="t-company">IES Rafael Alberti</div>
+                            <div class="t-date">sept. 2019 &ndash; jun. 2022</div>
+                        </li>
+                    </ul>
+                    <h3 style="margin-top:1.5rem"><span class="icon">&#128220;</span> Certificaciones</h3>
+                    <ul class="cert-list">
+                        <li><span class="cert-badge"></span> Curso de Git, GitHub y Jekyll &mdash; OpenWebinars</li>
+                        <li><span class="cert-badge"></span> Docker para Desarrolladores &mdash; OpenWebinars</li>
+                        <li><span class="cert-badge"></span> Curso de Git &mdash; OpenWebinars</li>
+                        <li><span class="cert-badge"></span> Hacking Web &mdash; OpenWebinars</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech -->
+    <section id="tech">
+        <div class="container">
+            <div class="fade-up">
+                <span class="section-label">Stack</span>
+                <h2 class="section-title">Tecnolog&iacute;as</h2>
+                <p class="section-desc">Herramientas y lenguajes con los que trabajo d&iacute;a a d&iacute;a, y otros que he utilizado en proyectos acad&eacute;micos y personales.</p>
+            </div>
+            <div class="tech-categories fade-up">
+                <div class="tech-cat">
+                    <h3>&#9889; Frontend</h3>
+                    <div class="tech-tags">
+                        <span class="tag">Angular</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Ionic</span>
+                        <span class="tag">Nebular</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS / SASS</span>
+                    </div>
+                </div>
+                <div class="tech-cat">
+                    <h3>&#9881;&#65039; Backend</h3>
+                    <div class="tech-tags">
+                        <span class="tag tag--cyan">NestJS</span>
+                        <span class="tag tag--cyan">Node.js</span>
+                        <span class="tag tag--cyan">Python</span>
+                        <span class="tag tag--cyan">FastAPI</span>
+                        <span class="tag tag--cyan">Java</span>
+                        <span class="tag tag--cyan">Kotlin</span>
+                    </div>
+                </div>
+                <div class="tech-cat">
+                    <h3>&#128451;&#65039; Bases de datos</h3>
+                    <div class="tech-tags">
+                        <span class="tag tag--green">MongoDB</span>
+                        <span class="tag tag--green">MySQL</span>
+                        <span class="tag tag--green">SQL</span>
+                        <span class="tag tag--green">SQLite</span>
+                    </div>
+                </div>
+                <div class="tech-cat">
+                    <h3>&#129302; IA &amp; Big Data</h3>
+                    <div class="tech-tags">
+                        <span class="tag tag--pink">LangChain</span>
+                        <span class="tag tag--pink">Google Gemini</span>
+                        <span class="tag tag--pink">RAG</span>
+                        <span class="tag tag--pink">ChromaDB</span>
+                        <span class="tag tag--pink">Machine Learning</span>
+                        <span class="tag tag--pink">An&aacute;lisis de datos</span>
+                    </div>
+                </div>
+                <div class="tech-cat">
+                    <h3>&#128295; DevOps &amp; Tools</h3>
+                    <div class="tech-tags">
+                        <span class="tag tag--amber">Docker</span>
+                        <span class="tag tag--amber">Git</span>
+                        <span class="tag tag--amber">Linux</span>
+                        <span class="tag tag--amber">Postman</span>
+                        <span class="tag tag--amber">Odoo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="container">
+            <div class="fade-up">
+                <span class="section-label">Portfolio</span>
+                <h2 class="section-title">Proyectos</h2>
+                <p class="section-desc">Proyectos personales y acad&eacute;micos. Por confidencialidad no puedo mostrar los proyectos profesionales en los que he participado.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card fade-up">
+                    <span class="p-featured">&#11088; Destacado</span>
+                    <h3>Pok&eacute;Chat &mdash; Pok&eacute;dex con IA</h3>
+                    <p class="p-desc">Chatbot inteligente que permite explorar Pok&eacute;mon mediante lenguaje natural. Usa RAG con ChromaDB para b&uacute;squeda sem&aacute;ntica sobre 386 Pok&eacute;mon indexados.</p>
+                    <div class="p-tags">
+                        <span class="p-tag">Angular 18</span>
+                        <span class="p-tag">FastAPI</span>
+                        <span class="p-tag">LangChain</span>
+                        <span class="p-tag">Google Gemini</span>
+                        <span class="p-tag">ChromaDB</span>
+                        <span class="p-tag">RAG</span>
+                    </div>
+                    <a href="https://github.com/danielmera2912/pokeApiChatBot" target="_blank" rel="noopener" class="p-link">
+                        Ver en GitHub
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </a>
+                </div>
+                <div class="project-card fade-up">
+                    <h3>CREV</h3>
+                    <p class="p-desc">Organizador deportivo para la gesti&oacute;n de eventos y competiciones. Proyecto fullstack con frontend web y backend con API REST.</p>
+                    <div class="p-tags">
+                        <span class="p-tag">Fullstack</span>
+                        <span class="p-tag">API REST</span>
+                    </div>
+                    <a href="https://danielmera2912.github.io/crev/" target="_blank" rel="noopener" class="p-link">
+                        Ver proyecto
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </a>
+                </div>
+                <div class="project-card fade-up">
+                    <h3>Blastinfo</h3>
+                    <p class="p-desc">Buscador de Pok&eacute;mon con interfaz moderna. Consulta la Pok&eacute;API para mostrar informaci&oacute;n detallada de cada criatura.</p>
+                    <div class="p-tags">
+                        <span class="p-tag">Web</span>
+                        <span class="p-tag">Pok&eacute;API</span>
+                    </div>
+                    <a href="https://danielmera2912.github.io/diw-UT4-Blastinfo/" target="_blank" rel="noopener" class="p-link">
+                        Ver proyecto
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </a>
+                </div>
+                <div class="project-card fade-up">
+                    <h3>SimpleGames</h3>
+                    <p class="p-desc">Colecci&oacute;n de minijuegos web sencillos creados como proyecto acad&eacute;mico para practicar l&oacute;gica y desarrollo frontend.</p>
+                    <div class="p-tags">
+                        <span class="p-tag">JavaScript</span>
+                        <span class="p-tag">HTML/CSS</span>
+                    </div>
+                    <a href="https://danielmera2912.github.io/SimpleGames/" target="_blank" rel="noopener" class="p-link">
+                        Ver proyecto
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
                     </a>
                 </div>
             </div>
         </div>
-    </section> <!-- end s-home -->
+    </section>
 
-    <!-- about
-    ================================================== -->
-    <section id="about" class="s-about target-section">
-        <div class="row narrow section-intro has-bottom-sep">
-            <div class="col-full text-center">
-                <h3>Información</h3>
-                <h1>Más información sobre mi</h1>
-                <p class="lead">Soy un estudiante de desarrollo, y me encanta desarrollar páginas web, aplicaciones y programas. Aún estoy en aprendizaje, pero me encanta aprender cosas nuevas y continuar desarrollando.
-            </br>
-            Para ver mi github completo, pincha <a href="https://github.com/danielmera2912">aquí</a>.
-                </p>
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container fade-up">
+            <span class="section-label">Contacto</span>
+            <h2 class="section-title">Hablemos</h2>
+            <p class="section-desc" style="margin: 0 auto .5rem;">Si quieres contactar conmigo, puedes encontrarme en cualquiera de estos canales.</p>
+            <div class="contact-links">
+                <a href="mailto:danjg009@gmail.com" class="contact-chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    danjg009@gmail.com
+                </a>
+                <a href="https://github.com/danielmera2912" target="_blank" rel="noopener" class="contact-chip">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 20.84c-3.36.73-4.08-1.62-4.08-1.62-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.08 1.84 2.83 1.31 3.52 1 .1-.78.42-1.31.76-1.61-2.68-.3-5.5-1.34-5.5-5.96 0-1.32.47-2.4 1.24-3.24-.13-.3-.54-1.53.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.88.12 3.18a4.65 4.65 0 0 1 1.24 3.24c0 4.63-2.83 5.65-5.52 5.95.44.37.82 1.1.82 2.22l-.01 3.29c0 .32.22.7.84.57A12 12 0 0 0 12 .3"/></svg>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/daniel-mera-sachse-b92267242/" target="_blank" rel="noopener" class="contact-chip">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77A1.75 1.75 0 0 0 0 1.73v20.54A1.75 1.75 0 0 0 1.77 24h20.46A1.75 1.75 0 0 0 24 22.27V1.73A1.75 1.75 0 0 0 22.23 0z"/></svg>
+                    LinkedIn
+                </a>
             </div>
         </div>
-        <div class="row about-content about-content--buttons">
-            <div>
-                <a href="#0" class="btn btn--primary full-width">Descarga mi curriculum</a>
-            </div>
-        </div> <!-- end about-content buttons -->
-    </section> <!-- end about -->
+    </section>
 
-    <!-- works
-    ================================================== -->
-    <section id="works" class="s-works target-section">
-        <div class="row narrow section-intro has-bottom-sep">
-            <div class="col-full">
-                <h3>Portafolio</h3>
-                <h1>Mis trabajos</h1>
-                <p class="lead">Todos mis proyectos "importantes" desde este momento son los siguientes, para verlos todos accede a mis repositorios.</p>
-            </div>
-        </div>
-        <div class="row masonry-wrap">
-            <div class="masonry">
-                <div class="masonry__brick">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="https://danielmera2912.github.io/botonVariocolor/" class="thumb-link" data-size="1050x700">
-                                <img src="https://danielmera2912.github.io/botonVariocolor/" srcset="images/portfolio/shutterbug.jpg 1x, https://danielmera2912.github.io/botonVariocolor/ 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">
-                                Componente animado en Python
-                            </h3>
-                            <p class="item-folio__cat">
-                                Cambio de color de un botón
-                            </p>
-                        </div>
-                        <span class="item-folio__caption">
-                            <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo. Unde dolorem corrupti neque nisi.</p>
-                        </span>
-                    </div> <!-- end item-folio -->
-                </div> <!-- end masonry__brick -->
-                <div class="masonry__brick">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="https://danielmera2912.github.io/SimpleGames/" class="thumb-link" data-size="1050x700">
-                                <img src="https://danielmera2912.github.io/SimpleGames/" srcset="images/portfolio/sg.png 1x, https://danielmera2912.github.io/SimpleGames/ 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">
-                                SimpleGames
-                            </h3>
-                            <p class="item-folio__cat">
-                                SimpleGames
-                            </p>
-                        </div>
-                    </div> <!-- end item-folio -->
-                </div> <!-- end masonry__brick -->
-                <div class="masonry__brick">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="https://danielmera2912.github.io/diw-UT4-Blastinfo/" class="thumb-link" data-size="1050x700">
-                                <img src="https://raw.githubusercontent.com/danielmera2912/danielmera2912.github.io/main/images/blastinfo.png" srcset="https://raw.githubusercontent.com/danielmera2912/danielmera2912.github.io/main/images/blastinfo.png 1x, https://danielmera2912.github.io/diw-UT4-Blastinfo/ 2x" alt="Blastinfo">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">
-                                Blastinfo
-                            </h3>
-                            <p class="item-folio__cat">
-                                Busca tus pokémon favoritos
-                            </p>
-                        </div>
-                    </div> <!-- end item-folio -->
-                </div> <!-- end masonry__brick -->
-                <div class="masonry__brick">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="https://danielmera2912.github.io/crev/" class="thumb-link" data-size="1050x700">
-                                <img src="https://raw.githubusercontent.com/danielmera2912/crev_server/master/crev_logo.png" alt="CREV">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">
-                                CREV
-                            </h3>
-                            <p class="item-folio__cat">
-                                Organizador deportivo
-                            </p>
-                        </div>
-                    </div> <!-- end item-folio -->
-                </div> <!-- end masonry__brick -->
-            </div>
-        </div> <!-- end masonry -->
-        <!-- s-stats
-    ================================================== -->
-    <section id="contact" class="s-contact target-section">
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 &ndash; 2026 Daniel Mera Sachse</p>
+    </footer>
 
-        <div class="overlay"></div>
+    <script>
+        // Navbar scroll effect
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
 
-        <div class="row narrow section-intro">
-            <div class="col-full">
-                <h3>Contacto</h3>
+        // Mobile menu toggle
+        const toggle = document.getElementById('navToggle');
+        const links = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => links.classList.toggle('open'));
+        links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 
-                <p class="lead">Si deseas contactar conmigo, puedes hacerlo desde los medios que dispones abajo</p>
-            </div>
-        </div>
-
-        <div class="row contact__main">
-
-            <div class="col-four tab-full contact__infos">
-
-
-                <h4 class="h06">Email</h4>
-                <p>danjg009@gmail.com<br>
-                </p>
-
-            </div>
-
-        </div>
-     <div class="col-twelve">
-                <div class="copyright">
-                    <span>© Copyright</span> 
-                    <span>Design by <a href="https://www.styleshout.com/">styleshout</a></span>	
-                </div>
-
-                <div class="go-top">
-                <a class="smoothscroll" title="Back to Top" href="#top"><i class="im im-arrow-up" aria-hidden="true"></i></a>
-                </div>
-            </div>
-    </section> <!-- end s-contact -->
-
-
-
-    <div id="preloader">
-        <div id="loader"></div>
-    </div>
-
-
-    <!-- Java Script
-    ================================================== -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-    </section> <!-- end works -->
+        // Fade-up on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
